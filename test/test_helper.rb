@@ -9,4 +9,21 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  # returns true if a test user is logged.
+  def is_logged_in?
+  	!session[:user_id].nil?
+  end
+
+  def log_in_as(user, options = {})
+  	password 	= options[:password] || 'password'
+  	remember_me = options[:remember_me] || '1'
+
+  end
+
+  # only return true when its a integration test
+  def integration_test?
+  	defined?(post_via_redirect)
+  end
+
 end
